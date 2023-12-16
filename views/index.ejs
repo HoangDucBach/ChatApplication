@@ -3,6 +3,8 @@
 <head>
     <title>Chat Application</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="/css/introduction.css">
     <link rel="stylesheet" href="/css/chat.css">
     <link rel="stylesheet" href="/css/room.css">
@@ -17,22 +19,29 @@
 <div class="layout">
 
     <section class="introduction-layout">
+        <div class="introduction-layout__blur">
+
+        </div>
         <div class="introduction-layout__title--layout">
             <div class="introduction-layout__title--sup">
                 Chat Application
             </div>
-            <div class="introduction-layout__title--sub">
-                by Hoang Duc Bach
-            </div>
         </div>
 
         <div class="introduction-layout__introduction">
-            <b>Lorem ipsum</b> dolor sit amet, consectetur adipisicing elit.
-            Aliquid at distinctio eius et eum exercitationem inventore
-            nemo nesciunt numquam officia, quisquam, repudiandae sit voluptatibus?
-            Aliquid, distinctio, iste. Alias, aut sed?
+            <span id="cap">THE FUTURE IS HERE, REAL TIME WEB</span>
+            <br> <br>
+            Simple real-time messaging app. Connect <span id="your-friend"> your friend</span> together, quickly
+            enter
+            your name and join me!
+            <br><br> <span id="follow">Follow</span> who's online and more...
         </div>
-
+        <div class="introduction-layout__about-me">
+            <span id="me">DESIGN & DEVELOP BY <b>HOANG DUC BACH</b></span>
+            <br>
+            The web is still in the process of evolving and improving, as developers learn as they grow. Hope you like
+            this project, love you!
+        </div>
         <div class="introduction-layout__control--layout">
             <div class="introduction-layout__control--layout-mid">
                 <div class="introduction-layout__control--time-layout">
@@ -47,7 +56,8 @@
                 <div class="introduction-layout__button--logout-layout">
 
                     <button class="introduction-layout__button--logout">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="20" viewBox="0 0 17 20" fill="none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="20" viewBox="0 0 17 20"
+                             fill="none">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                   d="M7 17H14V3H7V0H14H17V3V17V20H14H7V17ZM6 11H0V9H6V6.53589L12 10L6 13.4641V11Z"
                                   fill="#484848"/>
@@ -65,14 +75,7 @@
     </section>
 
     <section class="chat-layout">
-        <div class="chat-layout__join-layout">
-            <button class="chat-layout__join-button">
-                JOIN
-            </button>
-            <div class="chat-layout__join-input-layout">
-                <input placeholder="Your nickname" type="text" class="chat-layout__join-input">
-            </div>
-        </div>
+
         <div class="chat-layout__message--scroll">
             <!--            <div class="chat-layout__message&#45;&#45;layout">-->
             <!--                <div class="chat-layout__message&#45;&#45;info-layout">-->
@@ -85,7 +88,15 @@
             <!--                <div class="chat-layout__message"></div>-->
             <!--            </div>-->
         </div>
-
+        <div class="chat-layout__join-layout">
+            <button class="chat-layout__join-button">
+                JOIN
+            </button>
+            <div class="chat-layout__join-input-layout">
+                <input placeholder="Your nickname" type="text" class="chat-layout__join-input">
+            </div>
+            <input type="color" class="chat-layout__join-color">
+        </div>
         <div class="chat-layout__input--layout">
             <input type="text" class="chat-layout__input" placeholder="Type your message">
             <div class="chat-layout__input--send">

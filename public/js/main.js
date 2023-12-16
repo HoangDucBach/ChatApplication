@@ -1,4 +1,6 @@
 const socket = io('https://chat-app-hoangducbach.koyeb.app/');
+// const socket = io('http://localhost:3000');
+
 function formatTime(timestamp) {
     const date = new Date(timestamp);
     let hours = date.getHours();
@@ -14,34 +16,43 @@ function formatTime(timestamp) {
     const formattedTime = `${hours}:${minutes} ${amOrPm}`;
     return formattedTime;
 }
-const addMessageToView = (userName, message) => {
+
+const addMessageToView = (userName, color, message) => {
     const scrollMessage = $('.chat-layout__message--scroll');
     const newMessage = `
-    <div class="chat-layout__message--layout">
-        <div class="chat-layout__message--info-layout">        
-            <div class="chat-layout__message-username">
-                ${userName}
-            </div>
-            <time class="chat-layout__message--time">
-                ${formatTime(Date.now())}
-            </time>
+    <div class="chat-layout__message--layout-and-color">
+        <div class="chat-layout__message-color">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45" fill="none">
+                <circle cx="22.5" cy="22.5" r="22.5" fill="${color}"/>
+            </svg>
         </div>
-       
-        <div class="chat-layout__message">
-            ${message}
+        <div class="chat-layout__message--layout">
+            <div class="chat-layout__message--info-layout">        
+                <div class="chat-layout__message-username">
+                    ${userName}
+                </div>
+                <time class="chat-layout__message--time">
+                    ${formatTime(Date.now())}
+                </time>
+            </div>
+           
+            <div class="chat-layout__message">
+                ${message}
+            </div>
         </div>
     </div>
+    
     `;
     scrollMessage.append(newMessage);
     scrollMessage.scrollTop(scrollMessage[0].scrollHeight);
 };
-const addUserToView=(userName,amount)=>{
+const addUserToView = (userName, color, amount) => {
     const usersLayout = $('.room-layout__users--layout');
     const userLayout = `
     <div class="room-layout__users--user">
         <div class="room-layout__users--user-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="5" height="6" viewBox="0 0 5 6" fill="none">
-                <circle cx="2.5" cy="3" r="2.5" fill="#58FA4A"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <circle cx="15" cy="15" r="15" fill="${color}"/>
             </svg>
         </div>
         <div class="room-layout__users--users--state-layout">
@@ -53,39 +64,55 @@ const addUserToView=(userName,amount)=>{
     usersLayout.append(userLayout);
     $('.room-layout__state').text(amount + ' online');
 }
+const handleMessage = () => {
+    const $chatInput = $('.chat-layout__input');
+    socket.emit('chat-message', $chatInput.val());
+    $chatInput.val('');
+}
+const handleJoin = () => {
+    const $inputLayout = $('.chat-layout__input--layout');
+    const $joinLayout = $('.chat-layout__join-layout');
+    const $colorInput = $('.chat-layout__join-color');
+    const $userName = $('.chat-layout__join-input');
+
+    $joinLayout.hide();
+    $inputLayout.show();
+    socket.emit('user-name', $userName.val(), $colorInput.val());
+    alert($colorInput.val());
+
+}
 $(document).ready(() => {
     const $chatInput = $('.chat-layout__input');
-    const $inputLayout=$('.chat-layout__input--layout')
+    const $inputLayout = $('.chat-layout__input--layout');
     const $sendButton = $('.chat-layout__input--send');
     const $joinButton = $('.chat-layout__join-button');
     const $joinLayout = $('.chat-layout__join-layout');
     const $userName = $('.chat-layout__join-input');
+    let color = '#000000';
     $inputLayout.hide();
     $joinLayout.show();
     $joinButton.on('click', () => {
-        $joinLayout.hide();
-        $inputLayout.show();
-        socket.emit('user-name', $userName.val());
+        handleJoin();
     });
     $sendButton.on('click', () => {
-        socket.emit('chat-message', $chatInput.val());
+        handleMessage()
     });
 
     $chatInput.on('keypress', (e) => {
         if (e.which === 13) {
-            socket.emit('chat-message', $chatInput.val());
-            socket.emit('user-name', $userName.val());
+            handleMessage();
         }
     });
     socket.on('chat-message', (data) => {
-        addMessageToView(data.userName, data.message);
+        color = data.color;
+        addMessageToView(data.userName, data.color, data.message);
     });
-    socket.on('load-history', (history,userList) => {
+    socket.on('load-history', (history, userList) => {
         history.forEach(val => {
-            addMessageToView(val.userName, val.message);
+            addMessageToView(val.userName, val.color, val.message);
         });
-        userList.forEach(val => {
-            addUserToView(val,userList.length);
+        userList.forEach(userName => {
+            addUserToView(userName, color, userList.length);
         });
     });
 

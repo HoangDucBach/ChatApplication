@@ -1,9 +1,13 @@
+:root {
+    --design-width: 1536px;
+    --design-height: 690px;
+}
 .room-layout {
     display: flex;
     flex-direction: column;
 
-    width: 200px;
-    height: 690px;
+    width: calc(200*100vw/1536);
+    height: 100vh;
     flex-shrink: 0;
     padding: 17px;
 
