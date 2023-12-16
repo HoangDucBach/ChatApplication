@@ -10,6 +10,9 @@
     const {addMessageToView} = require("../public/js/message");
     const user = require('../user/User');
     const room = require('../user/Room');
+    const cors = require('cors');
+
+    app.use(cors());
     /**
      * Get port from environment and store in Express.
      */
