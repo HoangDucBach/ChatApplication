@@ -1,0 +1,90 @@
+.room-layout {
+    display: flex;
+    flex-direction: column;
+
+    width: 200px;
+    height: 690px;
+    flex-shrink: 0;
+    padding: 17px;
+
+    background: #141413;
+    box-shadow: -10px 0px 10px 0px rgba(0, 0, 0, 0.10);
+}
+
+.room-layout__title--layout {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 35px;
+    gap: 40px;
+}
+
+.room-layout__title {
+    color: #FFF;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 2px;
+}
+
+.room-layout__state {
+    color: #484848;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 1px;
+}
+
+.room-layout__state--shape {
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    background-color: #58FA4A;
+}
+
+.room-layout__state--layout {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+}
+.room-layout__title--layout {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 40px;
+}
+.room-layout__users--layout {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    gap: 10px;
+    align-items: flex-start;
+
+}
+.room-layout__users--user {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    color: #FFF;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 1px;
+}
+.room-layout__state--layout {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0;
+}
+.room-layout__users--username-state {
+    color: #484848;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 1px;
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chat Application</title>
+
+    <link rel="stylesheet" href="/css/introduction.css">
+    <link rel="stylesheet" href="/css/chat.css">
+    <link rel="stylesheet" href="/css/room.css">
+    <link rel="stylesheet" href="/css/layout.css">
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script type="module" src="/js/main.js"></script>
+</head>
+<body>
+
+<div class="layout">
+
+    <section class="introduction-layout">
+        <div class="introduction-layout__title--layout">
+            <div class="introduction-layout__title--sup">
+                Chat Application
+            </div>
+            <div class="introduction-layout__title--sub">
+                by Hoang Duc Bach
+            </div>
+        </div>
+
+        <div class="introduction-layout__introduction">
+            <b>Lorem ipsum</b> dolor sit amet, consectetur adipisicing elit.
+            Aliquid at distinctio eius et eum exercitationem inventore
+            nemo nesciunt numquam officia, quisquam, repudiandae sit voluptatibus?
+            Aliquid, distinctio, iste. Alias, aut sed?
+        </div>
+
+        <div class="introduction-layout__control--layout">
+            <div class="introduction-layout__control--layout-mid">
+                <div class="introduction-layout__control--time-layout">
+                    <time class="introduction-layout__control--time--hour">
+                        10:34 PM
+                    </time>
+                    <time class="introduction-layout__control--time--date">
+                        16 Dec, 2023
+                    </time>
+                </div>
+
+                <div class="introduction-layout__button--logout-layout">
+
+                    <button class="introduction-layout__button--logout">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="20" viewBox="0 0 17 20" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M7 17H14V3H7V0H14H17V3V17V20H14H7V17ZM6 11H0V9H6V6.53589L12 10L6 13.4641V11Z"
+                                  fill="#484848"/>
+                        </svg>
+                    </button>
+
+
+                    <div class="introduction-layout__button--logout-title">
+                        Log out
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="chat-layout">
+        <div class="chat-layout__join-layout">
+            <button class="chat-layout__join-button">
+                JOIN
+            </button>
+            <div class="chat-layout__join-input-layout">
+                <input placeholder="Your nickname" type="text" class="chat-layout__join-input">
+            </div>
+        </div>
+        <div class="chat-layout__message--scroll">
+            <!--            <div class="chat-layout__message&#45;&#45;layout">-->
+            <!--                <div class="chat-layout__message&#45;&#45;info-layout">-->
+            <!--                    <div class="chat-layout__message-username">-->
+            <!--                    </div>-->
+            <!--                </div>-->
+
+            <!--                <time class="chat-layout__message-time">-->
+            <!--                </time>-->
+            <!--                <div class="chat-layout__message"></div>-->
+            <!--            </div>-->
+        </div>
+
+        <div class="chat-layout__input--layout">
+            <input type="text" class="chat-layout__input" placeholder="Type your message">
+            <div class="chat-layout__input--send">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M6.78639 9.39149L8.37978 13.1216C8.71478 13.0569 9.01635 12.824 9.13922 12.4571L12.6416 1.9974C12.9037 1.2148 12.1585 0.469573 11.3759 0.731625L0.916214 4.23404C0.462618 4.38593 0.213848 4.81089 0.234491 5.23449L3.64805 6.69268L8.08568 5.2877L6.78639 9.39149Z"
+                          fill="#FFDAB8"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <section class="room-layout">
+        <div class="room-layout__title--layout">
+            <div class="room-layout__title">
+                Room
+            </div>
+            <div class="room-layout__state--layout">
+                <div class="room-layout__state--shape">
+                </div>
+
+                <div class="room-layout__state">
+                    1 online
+                </div>
+            </div>
+        </div>
+        <div class="room-layout__users--layout">
+            <div class="room-layout__users--user">
+                <div class="room-layout__users--user-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="5" height="6" viewBox="0 0 5 6" fill="none">
+                        <circle cx="2.5" cy="3" r="2.5" fill="#58FA4A"/>
+                    </svg>
+                </div>
+                <div class="room-layout__users--users--state-layout">
+                    <div class="room-layout__users--username">bach</div>
+                    <div class="room-layout__users--username-state">Online</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

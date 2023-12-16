@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+
+    font: 15px Inter, sans-serif;
+}
+
+.layout {
+    display: inline-flex;
+    flex-direction: row;
+
+}
