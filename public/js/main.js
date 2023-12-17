@@ -1,5 +1,4 @@
-// const socket = io('https://chat-app-hoangducbach.koyeb.app/');
-const socket = io('http://localhost:3000');
+const socket = io('https://chat-app-hoangducbach.koyeb.app/');
 
 function formatTime(timestamp) {
     const date = new Date(timestamp);
