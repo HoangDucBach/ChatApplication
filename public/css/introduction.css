@@ -43,6 +43,7 @@
     font-weight: 700;
     line-height: normal;
 }
+
 .introduction-layout__about-me {
     color: #FFF;
     font-family: "Calibri Light", sans-serif;
@@ -64,6 +65,7 @@
         letter-spacing: 0.5px;
     }
 }
+
 .introduction-layout__introduction {
     width: 300px;
     height: 216px;
@@ -164,4 +166,8 @@
     font-weight: 600;
     line-height: normal;
     letter-spacing: 1px;
+}
+
+.introduction-layout__button--logout:active {
+    scale: 95%;
 }

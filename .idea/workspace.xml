@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="609e9644-1ff1-4648-9dec-c36308eeaa8d" name="Changes" comment="update">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/chat.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/introduction.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/introduction.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/room.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/room.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servers/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/servers/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/Room.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/Room.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +47,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
     "javascript.nodejs.core.library.configured.version": "20.7.0",
     "javascript.nodejs.core.library.typings.version": "20.7.0",
     "last_opened_file_path": "C:/Users/Asus/WebstormProjects/ChatApplication",
@@ -85,7 +91,8 @@
       <option name="presentableId" value="Default" />
       <updated>1702657876714</updated>
       <workItem from="1702657879590" duration="1560000" />
-      <workItem from="1702695586120" duration="51486000" />
+      <workItem from="1702695586120" duration="51528000" />
+      <workItem from="1702776228380" duration="7745000" />
     </task>
     <servers />
   </component>

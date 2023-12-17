@@ -11,7 +11,6 @@ const {addMessageToView} = require("../public/js/message");
 const user = require('../user/User');
 const room = require('../user/Room');
 const cors = require('cors');
-
 app.use(cors());
 /**
  * Get port from environment and store in Express.
@@ -35,6 +34,8 @@ io.on('connection', async (socket) => {
         color: '#000000',
 
     }
+    let id = socket.id;
+    let userName = socket.user.userName;
     console.log('a user connected ' + socket.id);
     socket.on('chat-message', async (message, color) => {
         io.emit('chat-message', {userName: socket.user.userName, color: socket.user.color, message: message});
@@ -43,11 +44,34 @@ io.on('connection', async (socket) => {
     socket.on('user-name', (userName, color) => {
         socket.user.userName = userName;
         socket.user.color = color || '#000000';
-        if (!room.userList.includes(userName)) {
-            room.userList.push(userName);
+        if (!room.userList.has(userName)) {
+            room.userList.set(userName, color);
             io.emit('new-user', userName, room.userList.length);
         }
-        io.emit('load-history', room.history, room.userList);
+        const map = [];
+        room.userList.forEach((val, key) => {
+            map.push([key, val]);
+        });
+        io.emit('load-history', room.history, map);
+        io.emit('user-join', socket.user.userName);
+    });
+
+    socket.on('disconnect', () => {
+        userName = socket.user.userName;
+        const map = [];
+        room.userList.delete(userName);
+        room.userList.forEach((val, key) => {
+            map.push([key, val]);
+        });
+        io.emit('user-leave', userName, id, map);
+        console.log(id + " has left");
+    });
+    socket.on('check-name', userName => {
+        if (!room.userList.has(userName)) {
+            io.emit('check-username', true);
+        } else {
+            io.emit('handle-username', false);
+        }
     });
 });
 /**

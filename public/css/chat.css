@@ -171,3 +171,14 @@
     letter-spacing: 1.5px;
 
 }
+
+.chat-layout__message--notification {
+    color: #484848;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    text-align: center;
+
+}

@@ -5,14 +5,18 @@
 .room-layout {
     display: flex;
     flex-direction: column;
-
-    width: calc(200*100vw/1536);
+    max-width: 562px;
+    width: calc(200 * 100vw / 1536);
     height: 100vh;
     flex-shrink: 0;
     padding: 17px;
 
     background: #141413;
     box-shadow: -10px 0px 10px 0px rgba(0, 0, 0, 0.10);
+
+    &::-webkit-scrollbar {
+        visibility: hidden;
+    }
 }
 
 .room-layout__title--layout {

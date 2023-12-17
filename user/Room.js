@@ -22,7 +22,7 @@ class Room {
     }
     constructor() {
         this._amount = 0;
-        this._userList = [];
+        this._userList = new Map();
         this._history = [];
     }
 }

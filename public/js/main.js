@@ -1,5 +1,5 @@
-const socket = io('https://chat-app-hoangducbach.koyeb.app/');
-// const socket = io('http://localhost:3000');
+// const socket = io('https://chat-app-hoangducbach.koyeb.app/');
+const socket = io('http://localhost:3000');
 
 function formatTime(timestamp) {
     const date = new Date(timestamp);
@@ -46,10 +46,26 @@ const addMessageToView = (userName, color, message) => {
     scrollMessage.append(newMessage);
     scrollMessage.scrollTop(scrollMessage[0].scrollHeight);
 };
+const notification = (userName, isJoined) => {
+    const scrollMessage = $('.chat-layout__message--scroll');
+    let state = userName;
+    if (isJoined) {
+        state += " has just joined to the chat !";
+    } else {
+        state += " left the chat !";
+    }
+    const newMessage = `
+        <div class="chat-layout__message--notification">
+            ${state} 
+        </div> 
+    `;
+    scrollMessage.append(newMessage);
+    scrollMessage.scrollTop(scrollMessage[0].scrollHeight);
+};
 const addUserToView = (userName, color, amount) => {
     const usersLayout = $('.room-layout__users--layout');
     const userLayout = `
-    <div class="room-layout__users--user">
+    <div class="room-layout__users--user" id="${socket.id}">
         <div class="room-layout__users--user-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
                 <circle cx="15" cy="15" r="15" fill="${color}"/>
@@ -63,23 +79,27 @@ const addUserToView = (userName, color, amount) => {
     `;
     usersLayout.append(userLayout);
     $('.room-layout__state').text(amount + ' online');
+
 }
 const handleMessage = () => {
     const $chatInput = $('.chat-layout__input');
     socket.emit('chat-message', $chatInput.val());
     $chatInput.val('');
 }
-const handleJoin = () => {
+const handleJoin = async () => {
     const $inputLayout = $('.chat-layout__input--layout');
     const $joinLayout = $('.chat-layout__join-layout');
     const $colorInput = $('.chat-layout__join-color');
     const $userName = $('.chat-layout__join-input');
-
     $joinLayout.hide();
     $inputLayout.show();
     socket.emit('user-name', $userName.val(), $colorInput.val());
-    alert($colorInput.val());
-
+}
+const handleLeave = () => {
+    const $joinLayout = $('.chat-layout__join-layout');
+    const $inputLayout = $('.chat-layout__input--layout');
+    $inputLayout.hide();
+    $joinLayout.show();
 }
 $(document).ready(() => {
     const $chatInput = $('.chat-layout__input');
@@ -88,11 +108,11 @@ $(document).ready(() => {
     const $joinButton = $('.chat-layout__join-button');
     const $joinLayout = $('.chat-layout__join-layout');
     const $userName = $('.chat-layout__join-input');
-    let color = '#000000';
-    $inputLayout.hide();
-    $joinLayout.show();
+    const $logOut = $('.introduction-layout__button--logout');
+    handleLeave();
     $joinButton.on('click', () => {
         handleJoin();
+        socket.connect();
     });
     $sendButton.on('click', () => {
         handleMessage()
@@ -103,17 +123,34 @@ $(document).ready(() => {
             handleMessage();
         }
     });
-    socket.on('chat-message', (data) => {
-        color = data.color;
-        addMessageToView(data.userName, data.color, data.message);
-    });
-    socket.on('load-history', (history, userList) => {
-        history.forEach(val => {
-            addMessageToView(val.userName, val.color, val.message);
-        });
-        userList.forEach(userName => {
-            addUserToView(userName, color, userList.length);
-        });
-    });
+    socket.on('connect', () => {
 
+        socket.on('chat-message', (data) => {
+            addMessageToView(data.userName, data.color, data.message);
+        });
+        socket.on('load-history', (history, userList) => {
+            history.forEach(val => {
+                addMessageToView(val.userName, val.color, val.message);
+            });
+            $('.room-layout__users--layout').empty();
+            userList.forEach(val => {
+                addUserToView(val[0], val[1], userList.length);
+            });
+        });
+        socket.on('user-join', userName => {
+            notification(userName, true);
+        });
+        socket.on('user-leave', (userName, id, userList) => {
+            notification(userName, false);
+            $(`#${id}`).remove();
+            $('.room-layout__users--layout').empty();
+            userList.forEach(val => {
+                addUserToView(val[0], val[1], userList.length);
+            });
+        });
+    });
+    $logOut.on('click', () => {
+        socket.disconnect();
+        handleLeave();
+    });
 });
